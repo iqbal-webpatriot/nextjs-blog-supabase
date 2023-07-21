@@ -6,7 +6,7 @@ export const getAllBlogPostFromSupabase = async (
   limit
 ) => {
   let query = supabase
-    .from("blog_with_user_info7")
+    .from("blog_with_user_info8")
     .select("*", { count: "exact" })
     .order("created_at", { ascending: false });
   if (searchQuery && categoryName) {
@@ -31,7 +31,7 @@ export const getAllBlogPostFromSupabase = async (
 
 export const getTotalBlogsCount = async (searchQuery, categoryName) => {
   let query = supabase
-    .from("blog_with_user_info7")
+    .from("blog_with_user_info8")
     .select("*", { count: "exact" });
   if (searchQuery && categoryName) {
     query = query
@@ -52,7 +52,7 @@ export const getTotalBlogsCount = async (searchQuery, categoryName) => {
   return query;
 };
 export const getSingleBlogPostFromSupabase = async (postId) => {
-  return supabase.from("blog").select("*").eq("blog_id", postId);
+  return supabase.from("blog_with_user_info8").select("*").eq("blog_id", postId);
 };
 export const getLikedPostFromSupabase = async (reqbody) => {
   return supabase
@@ -63,7 +63,7 @@ export const getLikedPostFromSupabase = async (reqbody) => {
 
 export const allBlogPostOfLoggedUser = async (userid) => {
   return await supabase
-    .from("blog_with_user_info7")
+    .from("blog_with_user_info8")
     .select()
     .eq("id", userid)
     .order("created_at", { ascending: false });
@@ -71,7 +71,7 @@ export const allBlogPostOfLoggedUser = async (userid) => {
 
 export const searchAllBlogPostOfLoggedUser = async (userid, searchQuery) => {
   return await supabase
-    .from("blog_with_user_info7")
+    .from("blog_with_user_info8")
     .select("*")
     .eq("id", userid)
     .ilike("title", `%${searchQuery}%`)

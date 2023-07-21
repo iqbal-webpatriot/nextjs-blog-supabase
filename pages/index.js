@@ -137,8 +137,6 @@ export default function Home() {
   {/* <!-- Section: Design Block --> */}
 
 </div>
-{/* <!-- Container for demo purpose --> */}
-<ToastContainer/>
     </>
   );
 }

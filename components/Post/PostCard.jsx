@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { supabase } from "../../lib/supabaseClient";
 import { getLikedPostFromSupabase } from "../../service/api";
 import { addLikedBlogByUser } from "../../Redux/Features/blogFeature/blogSlice";
+import {toast} from 'react-toastify'
 export  const isLikedByUser =(blogId,userId,blogData)=>{
      if(blogData && blogData.length>0){
       // console.log('is liked status ',blogData.some((cur)=>cur.user_id==userId && cur.blog_id==blogId && cur.is_liked==true))
@@ -80,15 +81,20 @@ export default function PostCard({ post, id ,likedPostId}) {
       <div className="mb-6 md:mb-0  h-full">
         <h3 className="text-2xl font-bold mb-3">{post.title}</h3>
         <div className="mb-3  text-red-600 font-medium text-md flex items-center content-center justify-center md:justify-start">
-        {`Favorite${post?.like_count>0?"("+post.like_count+")":' '}`}
+        {`Favorite${post?.like_count>0?"("+post.like_count+")":' '} `}
           <svg
             onClick={() => {
               if(!user.id){
+                toast.error('Please login to like the post')
+                return
+              }
+              if(post.id===user.id){
+                toast.warn('You can not like your own post')
                 return
               }
               mutaion.mutate({ user_id:user.id,blog_id:post.blog_id});
             }}
-            className="cursor-pointer w-5 h-5 ml-1"
+            className={`cursor-pointer w-5 h-5 ml-1`}
             xmlns="http://www.w3.org/2000/svg"
             fill={`${ isLikedByUser(post.blog_id,user.id,likedPostId) ? "red" : "none"}`}
             viewBox="0 0 24 24"

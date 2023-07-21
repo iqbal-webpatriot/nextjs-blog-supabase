@@ -143,7 +143,7 @@ function EditBlog() {
           .match({ id: editBlogPost.id, blog_id: editBlogPost.blog_id });
         //  console.log('updated blog result', updatedBlogResult)
         const updatedBlogList = await supabase
-          .from("blog_with_user_info7")
+          .from("blog_with_user_info8")
           .select()
           .eq("id", editBlogPost.id)
           .order("created_at", { ascending: false });
