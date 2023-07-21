@@ -20,6 +20,7 @@ import { addLikedBlogByUser } from "../../Redux/Features/blogFeature/blogSlice";
 import Head from "next/head";
 import NotFound from "../../components/PageNotFound/PageNotFound";
 import moment from "moment";
+import {toast} from "react-toastify"
 export default function Product({ post }) {
   const router = useRouter();
   const { likedBlogByUser } = useSelector((store) => store.blogReducer);
@@ -126,8 +127,13 @@ export default function Product({ post }) {
                 }`}</h5>
                 <svg
                   onClick={() => {
-                    if (!user.id) {
-                      return;
+                    if(!user.id){
+                      toast.error('Please login to like the post')
+                      return
+                    }
+                    if(data[0]?.id===user.id){
+                      toast.warn('You can not like your own post')
+                      return
                     }
                     mutaion.mutate({
                       blog_id: data[0].blog_id,
@@ -174,7 +180,8 @@ export default function Product({ post }) {
                   onChange={(e) => setNewComment(e.target.value)}
                 ></textarea>
                 <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+                  disabled={data[0]?.id===user.id && true}
+                  className={`bg-blue-500 text-white px-4 py-2 rounded mt-2 ${data[0]?.id===user.id?"opacity-50 cursor-not-allowed":""}`}
                    onClick={(e)=>{
                      e.preventDefault();
                       if(!user.id){

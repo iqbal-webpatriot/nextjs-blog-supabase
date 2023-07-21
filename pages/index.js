@@ -45,7 +45,7 @@ export default function Home() {
   //  dispatch(addAllBlogPosts(posts))
   //**  for blog post catching
   const {data,isLoading,isError,error,isFetched,isFetching}= useQuery({ queryKey: ['blogPost'], queryFn:async()=>{
-    const response= await getAllBlogPostFromSupabase(searchInput,selectedCategory,loadMoreLimit);
+    const response= await getAllBlogPostFromSupabase(searchInput,selectedCategory,loadMore);
     return response.data
 
   }, 
@@ -57,7 +57,7 @@ export default function Home() {
       fetchLikedPosts()
     }
     if(totalBlogsCount==0){
-      getTotalBlogsCount("react").then((count)=>{
+      getTotalBlogsCount(searchInput,selectedCategory).then((count)=>{
     
         dispatch(updateTotalBlogsCount(count.count))
         console.log('total blogs count',count)
