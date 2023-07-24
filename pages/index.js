@@ -23,7 +23,8 @@ export default function Home() {
   const queryClient=useQueryClient()
   const dispatch=useDispatch();
   const [likedPostId,setLikedPostId]=useState([]);
-  const {user}=useSelector((store)=>store.userReducer);
+  // const {user}=useSelector((store)=>store.userReducer);
+  const user= JSON.parse(sessionStorage.getItem("user")) ||{}
   const {blogs,likedBlogByUser,loadMore,totalBlogsCount}=useSelector((store)=>store.blogReducer);
   const [loadMoreLimit,setLoadMoreLimit]=useState(5)
   const [isVisible, setIsVisible] = useState(false); //! toggle load more component visibility
