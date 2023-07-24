@@ -1,18 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUserInfo } from "../../Redux/Features/UserFeature/userSlice";
 import { resetBlogStateOnLogout } from "../../Redux/Features/blogFeature/blogSlice";
 
 export default function Navbar() {
   const [showAvatartMenu, setShowAvatartMenu] = useState(false);
-  const { session, user } = useSelector((store) => store.userReducer);
+  // const { session, user } = useSelector((store) => store.userReducer);
+  const user= JSON.parse(sessionStorage.getItem("user")) || {}
   const dispatch = useDispatch();
   // console.log("avatart menu state ,", setShowAvatartMenu);
   const closeAvatarMenu = () => {
     setShowAvatartMenu(false);
   };
+
   return (
     <>
       <nav className="fixed top-0 left-0 right-0   z-20 w-full flex flex-wrap items-center justify-between py-6 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
@@ -176,6 +178,7 @@ export default function Navbar() {
                     onClick={(e) => {
                       e.preventDefault();
                       closeAvatarMenu();
+                      sessionStorage.removeItem('user')
                       dispatch(addLoggedUserInfo({ user: {}, session: {} }));
                       dispatch(resetBlogStateOnLogout());
                     }}

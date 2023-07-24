@@ -19,7 +19,8 @@ function UserBlogs() {
   const queryClient = useQueryClient();
   const { allBlogsOfLoggedUser } = useSelector((store) => store.blogReducer);
   const [searchInput,setSearchInput]=useState('');
-  const { user } = useSelector((store) => store.userReducer);
+  // const { user } = useSelector((store) => store.userReducer);
+  const user= JSON.parse(sessionStorage.getItem("user"))
   const dispatch = useDispatch();
    const [isModalOpen,setIsModalOpen] = useState(false);
    const [confirmDelete,setConfirmDelete] = useState(false);

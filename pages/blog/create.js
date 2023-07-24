@@ -21,7 +21,8 @@ import { addAllCategories, addAllTags } from "../../Redux/Features/blogFeature/b
   const [selectedCategory, setSelectedCategory]=useState(null);
   const dispatch=useDispatch()
   const queryClent = useQueryClient();
-  const {user}= useSelector((store)=>store.userReducer)
+  // const {user}= useSelector((store)=>store.userReducer)
+  const user= JSON.parse(sessionStorage.getItem("user")) || {}
   const {allTags,allCategories}=useSelector(store=>store.blogReducer)
   const [blogInput, setBlogInput] = useState({
     title: "",

@@ -25,7 +25,8 @@ export default function Product({ post }) {
   const router = useRouter();
   const { likedBlogByUser } = useSelector((store) => store.blogReducer);
   const dispatch = useDispatch();
-  const { user } = useSelector((store) => store.userReducer);
+  // const { user } = useSelector((store) => store.userReducer);
+  const user= JSON.parse(sessionStorage.getItem("user")) || {}
   const [newComment, setNewComment] = useState('');
   const queryClent = useQueryClient();
   const mutaion = useMutation(

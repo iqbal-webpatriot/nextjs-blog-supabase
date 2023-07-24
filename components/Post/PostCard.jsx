@@ -46,7 +46,8 @@ export default function PostCard({ post, id ,likedPostId}) {
       },
     }
   );
-  const {user}=useSelector((store)=>store.userReducer)
+  // const {user}=useSelector((store)=>store.userReducer)
+  const user= JSON.parse(sessionStorage.getItem("user")) || {}
   return (
     <div key={id} className="grid  md:grid-cols-2 gap-x-6 xl:gap-x-12 items-center mb-12">
       <div
