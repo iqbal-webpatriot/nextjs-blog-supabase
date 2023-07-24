@@ -85,7 +85,7 @@ export default function PostCard({ post, id ,likedPostId}) {
           <svg
             onClick={() => {
               if(!user.id){
-                toast.error('Please login to like the post')
+                toast.error('Login is required')
                 return
               }
               if(post.id===user.id){

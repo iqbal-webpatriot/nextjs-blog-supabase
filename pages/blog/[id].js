@@ -128,7 +128,7 @@ export default function Product({ post }) {
                 <svg
                   onClick={() => {
                     if(!user.id){
-                      toast.error('Please login to like the post')
+                      toast.error('Login is required')
                       return
                     }
                     if(data[0]?.id===user.id){
@@ -185,9 +185,11 @@ export default function Product({ post }) {
                    onClick={(e)=>{
                      e.preventDefault();
                       if(!user.id){
+                        toast.error("Login is required")
                         return;
                       }
                       if(newComment===''){
+                        toast.error("Comment field is required")
                         return;
                       }
                       commentMutation.mutate({
