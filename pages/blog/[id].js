@@ -119,7 +119,7 @@ export default function Product({ post }) {
               className="w-full md:w-3/4 lg:w-3/4 rounded md:mx-auto h-96 shadow shadow-zinc-300 "
             />
             <div className=" w-full md:w-3/4 md:mx-auto">
-              <h3 className="  sm:mx-1 text-1xl first-letter:uppercase  font-medium my-2">
+              <h3 className="   sm:mx-1 text-2xl first-letter:uppercase  font-bold my-2">
                 {data[0].title}
               </h3>
               <div className="w-full flex justify-start items-center content-center p-1">

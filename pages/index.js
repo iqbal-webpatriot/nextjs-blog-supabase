@@ -125,7 +125,7 @@ export default function Home() {
   {/* <!-- Section: Design Block --> */}
   <section className="mb-32    text-gray-800 text-center md:text-left">
 
-    <h2 className="text-3xl font-bold mb-12 text-center">Latest articles</h2>
+    <h2 className="text-3xl font-bold mb-12 text-center">Latest Articles</h2>
      
    {blogs.length>0 ? blogs.map((post,index)=>{
     return <PostCard key={post.blog_id} id={index} post={post} likedPostId={likedBlogByUser}/>
